@@ -16,6 +16,8 @@ def driver():
 	"""Inicializa e finaliza o navegador para cada teste."""
 	options = Options()
 	options.add_argument("--start-maximized")
+	options.add_argument("--disable-gpu")
+	options.add_argument("--disable-dev-shm-usage")
 
 	driver_path = ChromeDriverManager().install()
 

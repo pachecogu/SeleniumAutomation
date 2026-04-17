@@ -10,3 +10,16 @@ def test_abrir_pagina_inicial_e_exibir_logo(driver):
 	home_page.open()
 
 	assert home_page.is_logo_visible(), "A logo da página inicial não foi exibida."
+
+
+def test_buscar_produto_existente(driver):
+	"""Cenário 2: ao buscar notebook, deve exibir lista e o primeiro nome conter notebook."""
+	home_page = HomePage(driver)
+
+	home_page.open()
+	home_page.search_product("notebook")
+
+	assert home_page.is_product_list_displayed(), "A lista de produtos não foi exibida."
+	assert home_page.first_product_contains("notebook"), (
+		"O primeiro produto não contém a palavra 'notebook' no nome."
+	)

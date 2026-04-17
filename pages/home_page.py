@@ -12,6 +12,15 @@ class HomePage(BasePage):
 	"""Representa a página inicial do Kabum."""
 
 	LOGO_LOCATOR = (By.CSS_SELECTOR, "img[class='w-[106px] desktop:w-full']")
+	SEARCH_INPUT_LOCATOR = (By.ID, "inputBusca")
+	SEARCH_BUTTON_LOCATOR = (
+		By.CSS_SELECTOR,
+		"button[data-testid='buttonBuscaKabum']",
+	)
+	PRODUCT_CARDS_LOCATOR = (
+		By.CSS_SELECTOR,
+		"main a[href*='/produto/']:first-of-type > span",
+	)
 
 	def open(self):
 		"""Abre a URL base do Kabum."""
@@ -24,3 +33,33 @@ class HomePage(BasePage):
 			return True
 		except TimeoutException:
 			return False
+
+	def fill_search_input(self, search_text):
+		"""Preenche o campo de busca com o texto informado."""
+		self.type_text(self.SEARCH_INPUT_LOCATOR, search_text)
+
+	def click_search_button(self):
+		"""Clica no botão de busca."""
+		self.click(self.SEARCH_BUTTON_LOCATOR)
+
+	def search_product(self, search_text):
+		"""Executa a busca por um produto na home."""
+		self.fill_search_input(search_text)
+		self.click_search_button()
+
+	def is_product_list_displayed(self):
+		"""Retorna True quando existe pelo menos um resultado exibido."""
+		try:
+			self.wait_element_visible(self.PRODUCT_CARDS_LOCATOR)
+			return self.element_exists(self.PRODUCT_CARDS_LOCATOR)
+		except TimeoutException:
+			return False
+
+	def get_first_product_name(self):
+		"""Obtém o nome do primeiro produto listado."""
+		return self.get_element_text(self.PRODUCT_CARDS_LOCATOR)
+
+	def first_product_contains(self, expected_word):
+		"""Valida se o primeiro produto contém a palavra esperada."""
+		first_product_name = self.get_first_product_name()
+		return expected_word.lower() in first_product_name.lower()

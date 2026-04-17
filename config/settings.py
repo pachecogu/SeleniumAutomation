@@ -6,7 +6,7 @@ Configurações globais do projeto de automação Selenium
 BASE_URL = "https://www.kabum.com.br"
 
 # Tempo máximo de espera por um elemento aparecer (em segundos)
-WAIT_TIME = 10
+WAIT_TIME = 4
 
 # Tempo de pausa entre ações (em segundos)
 SLEEP_TIME = 2

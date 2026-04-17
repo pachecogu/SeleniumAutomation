@@ -23,3 +23,16 @@ def test_buscar_produto_existente(driver):
 	assert home_page.first_product_contains("notebook"), (
 		"O primeiro produto não contém a palavra 'notebook' no nome."
 	)
+
+
+def test_buscar_produto_inexistente(driver):
+	"""Cenário 3: ao buscar item inexistente, não deve haver resultados."""
+	home_page = HomePage(driver)
+	expected_message = "Lamentamos, nenhum produto encontrado com esse critério de pesquisa."
+
+	home_page.open()
+	home_page.search_product("xyzprodutoinexistente123")
+
+	assert home_page.is_empty_result_message_displayed_with_text(expected_message), (
+		"A mensagem de lista vazia não foi exibida com o texto esperado."
+	)

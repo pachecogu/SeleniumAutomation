@@ -17,50 +17,58 @@ Pré-requisitos:
 
 1. Acesse a pasta do projeto:
 
-```powershell
+-->powershell
 cd C:\PUC\Projects\SeleniumAutomation
-```
+
 
 2. Crie o ambiente virtual (primeira execução):
 
-```powershell
+-->powershell
 python -m venv .venv
-```
+
 
 3. Ative o ambiente virtual:
 
-```powershell
+-->powershell
 .\.venv\Scripts\Activate.ps1
-```
+
 
 4. Instale as dependências:
 
-```powershell
+-->powershell
 python -m pip install -r requirements.txt
-```
+
+
+No Git Bash, os comandos equivalentes são:
+
+-->bash
+python -m venv .venv
+source .venv/Scripts/activate
+python -m pip install -r requirements.txt
+
 
 ## Como executar e verificar os logs
 
 Para executar os testes:
 
-```bash
+-->bash
 python -m pytest
-```
+
 
 Para verificar os logs no terminal com mais detalhes:
 
-```bash
+-->bash
 python -m pytest -v -s --log-cli-level=INFO
-```
+
 
 Para salvar os logs em arquivo:
 
-```powershell
+-->powershell
 python -m pytest -v *> logs_execucao.txt
-```
+
 
 Para salvar os logs em arquivo no Git Bash:
 
-```bash
+-->bash
 python -m pytest -v > logs_execucao.txt 2>&1
-```
+
